@@ -42,6 +42,26 @@ class Solution {
     }
 };
 
+// 采用数论的方法，C m-1 m+n-2  注意溢出的问题,还有(m + n - 2)! == ((m - 1) + (n - 1))!
+class Solution {
+  public:
+    int uniquePaths(int m, int n) {
+      long long numerator = 1;  // 分子
+      int denominator = m - 1;  // 分母
+      int count = m - 1;
+      int t = m + n - 2;
+      while (count --) {
+        numerator *= (t--);
+        // 恰好能整除
+        while (denominator != 0 && numerator % denominator == 0) {
+          numerator /= denominator;
+          denominator --;
+        }
+      }
+      return numerator;
+    }
+};
+
 int main() {
   return 0;
 }
