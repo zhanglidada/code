@@ -2,6 +2,8 @@
 #include <vector>
 using namespace std;
 
+// 采用动态规划的方式遍历数组
+/*
 class test_package_problem {
   public:
     test_package_problem(int bagwei) {
@@ -31,6 +33,34 @@ class test_package_problem {
   private:
    int bag_weight = 0;
 };
+*/
+
+// 采用一维数组保存背包信息
+// 采用动态规划的方式遍历数组
+class test_package_problem {
+  public:
+    test_package_problem(int bagwei) {
+      bag_weight = bagwei;
+    }
+
+    int calc_max_value(vector<int>& weight, vector<int>& value) {
+      // 获取物品的数目
+      int num = weight.size();
+      vector<int> dp(bag_weight + 1, 0);
+
+      for (int i = 0; i < num; i++) {
+        for (int j = bag_weight; j >= weight[i]; j--) {
+          dp[j] = max(dp[j], dp[j - weight[i]] + value[i]);
+          //cout << dp[j] << " ";
+        }
+        //cout << endl;
+      }
+      return dp[bag_weight];
+    }
+  private:
+   int bag_weight = 0;
+};
+
 
 int main() {
   vector<int> weight = {1,3,4};
