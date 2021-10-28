@@ -18,6 +18,8 @@ int main() {
   printf("size of member in struct pointer is : %d\n", sizeof(new_test->sig) / sizeof(int));
   printf("size of alias is : %d\n", sizeof(name));
 
+  char* buf = "\"123";
+  printf("%d\n", strlen(buf));
 
   return 0;
 }
