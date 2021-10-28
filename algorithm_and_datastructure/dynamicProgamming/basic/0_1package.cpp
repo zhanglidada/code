@@ -19,7 +19,7 @@ class test_package_problem {
         dp[0][j]  = dp[0][j - weight[0]] + value[0];
       }
 
-      for (int i = 1; i < num; i++) {
+      for (int i = 1; i < num; i++ ) {
         for (int j = 1; j <= bag_weight; j++) {
           if (j < weight[i])  dp[i][j] = dp[i - 1][j];
           else {
