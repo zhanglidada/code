@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define global_ini_info "PSL"
 
 typedef struct test1 test1_2;
 struct test1 {
@@ -20,6 +21,10 @@ int main() {
 
   char* buf = "\"123";
   printf("%d\n", strlen(buf));
+
+  if (!strcmp(global_ini_info, "PSL")) {
+    printf("global ini info is PSL.\n");
+  }
 
   return 0;
 }
