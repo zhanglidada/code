@@ -1,30 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define global_ini_info "PSL"
 
-typedef struct test1 test1_2;
-struct test1 {
-  int sig[128];
-};
+// str从起始字符开始有多少字符和group中的字符匹配，group是一个字符集合
+size_t strspn(const char* str, const char* group)
+{
+  const char* p = NULL;
+  const char* g = NULL;
+  size_t count = 0;  // 匹配字符个数
 
-// pathname_t是char[128]数组的别名
-typedef char pathname_t[128];
-pathname_t name;
+  for (p = str; *p != '\0'; p++)
+  {
+    for (g = group; *g != '\0'; g++)
+    {
+      if (*p == *g)
+      {
+        count ++;
+        break;
+      }
+    }
 
-int main() {
-  test1_2 * new_test;
-  new_test = malloc(sizeof(test1_2));
-
-  printf("size of member in struct pointer is : %d\n", sizeof(new_test->sig) / sizeof(int));
-  printf("size of alias is : %d\n", sizeof(name));
-
-  char* buf = "\"123";
-  printf("%d\n", strlen(buf));
-
-  if (!strcmp(global_ini_info, "PSL")) {
-    printf("global ini info is PSL.\n");
+    // str中当前字符，匹配到group中最后一个字符均没有匹配，直接返回
+    if (*g == '\0')
+    {
+      return count;
+    }
   }
+  memccpy()
+}
 
-  return 0;
+int main()
+{
+  
 }
