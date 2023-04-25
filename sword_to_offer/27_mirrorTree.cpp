@@ -11,18 +11,26 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-/* 采用递归方法
+//采用递归方法
 class Solution {
  public:
   TreeNode* mirrorTree(TreeNode* root) {
+    // 为空直接返回
     if (root == nullptr)
       return nullptr;
+
+    // 叶子节点直接返回
+    if (root->left == nullptr && root->right == nullptr)
+      return root;
+
     TreeNode* tmp = root->left;
     root->left = mirrorTree(root->right);
     root->right = mirrorTree(tmp);
-    return root;s
+    return root;
   }
-};  */
+};
+
+
 class Solution {
  public:
   TreeNode* mirrorTree(TreeNode* root) {
