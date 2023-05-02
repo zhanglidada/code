@@ -9,8 +9,8 @@
                 "_DEBUG",
                 "UNICODE"
             ],
-            "miDebuggerPath": "C:\\Apps\\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\\mingw64\\bin\\gdb.exe",		//调试器路径
-            "compilerPath": "C:\\Apps\\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",		//编译器路径
+            "miDebuggerPath": "C:\\Apps\\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\\mingw64\\bin\\gdb.exe",
+            "compilerPath": "C:\\Apps\\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
             "intelliSenseMode": "msvc-x64",
             "browse": {
                 "path": [
@@ -21,6 +21,28 @@
             },
             "cStandard": "c11",
             "cppStandard": "c++17"
+        },
+        {
+            "name": "x64",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64"
+        },
+        {
+            "name": "ububtu",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "version": 4
