@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 
 class Solution {
@@ -31,3 +32,24 @@ int main() {
   cout << ss.replaceSpace(s);
   return 0;
 }
+
+
+class Solution {
+  public:
+    string replaceSpace(string s) {
+      for (auto c : s)
+      {
+        if (c == ' ')
+        {
+          res_str.append("%20");
+        }
+        else
+        {
+          res_str += c;
+        }
+      }
+      return res_str;  
+    }
+  private:
+    string res_str;
+};

@@ -13,7 +13,7 @@ struct TreeNode {
 class Solution {
  public:
   bool isSymmetric(TreeNode* root) {
-    // 根节点玮空，直接玮true
+    // 根节点为空，直接return true
     return root == nullptr ? true : recur(root->left, root->right);
   }
   bool recur(TreeNode* left, TreeNode* right) {
