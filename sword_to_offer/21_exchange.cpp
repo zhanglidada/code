@@ -43,7 +43,13 @@ class Solution {
   }
 };  */
 
-// 定义快慢双指针法
+/**
+ * @brief 
+ * 快慢双指针方法
+ * fast指针向后移，找奇数
+ * low指针指向最后一个需要被交换的偶数位置，用于和fast后面找到的奇数交换
+ * low指针其实就是奇数偶数边界
+ */
 class Solution {
  public:
   vector<int> exchange(vector<int>& nums) {
