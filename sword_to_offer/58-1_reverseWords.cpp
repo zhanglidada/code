@@ -30,11 +30,17 @@ class Solution {
 class Solution {
  public:
   string reverseWords(string s) {
-    istringstream ss(s);
-    stack<string> stk;
     string res, str;
+    stack<string> stk;
+
+    // 初始化一个istringstream类，重新读取string串
+    istringstream ss(s);
+
+    // 依次添加字符串和空格
     while (ss >> str)  stk.push(str), stk.push(" ");
+    // 去除栈顶空格
     if (!stk.empty())  stk.pop();
+    // 依次出栈并添加
     while (!stk.empty()) res.append(stk.top()), stk.pop();
     return res;
   }
@@ -44,10 +50,15 @@ class Solution {
 class Solution {
 public:
   string reverseWords(string s) {
-    istringstream ss(s);
     string res, str;
+
+    // 初始化一个istringstream类，重新读取string串
+    istringstream ss(s);
+    
     while(ss >> str)
       res = str.append(" ").append(res);
+
+    // 去除头空格
     return res.substr(0, res.size() - 1);
   }
 };
