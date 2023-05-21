@@ -5,19 +5,18 @@ using namespace std;
 
 /* 采用hash表的方式
 class Solution {
- public:
-  int findRepeatNumber(vector<int>& nums) {
-    unordered_set<int> set;
-    int out;
-    for (int i = 0; i < nums.size(); i++) {
-      if (set.find(nums[i]) != set.end()) {
-        out = nums[i];
-        break;
-      }
-      set.insert(nums[i]);
+  public:
+    int findRepeatNumber(vector<int>& nums) {
+        for (auto num : nums) {
+            if (visited.count(num) > 0)
+                return num;
+            
+            visited.insert(num);
+        }
+        return -1;
     }
-    return out;
-  }
+  private:
+    unordered_set<int> visited;
 };  */
 
 /* 进行原地置换

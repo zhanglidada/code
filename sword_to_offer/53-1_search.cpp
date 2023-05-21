@@ -2,6 +2,7 @@
 #include <vector>
 using namespace std;
 
+/*
 class Solution {
  public:
   int search(vector<int>& nums, int target) {
@@ -45,9 +46,61 @@ class Solution {
     return i;
   }
 };
+
+*/
+
+/**
+ * @brief 
+ * 两次二分查找，分别查找坐边界和右边界
+ * 
+ */
+class Solution {
+  public:
+    int search(vector<int>& nums, int target) {
+      if (nums.size() == 0)
+        return 0;
+      
+      return upper_bound(nums, target) - lower_bound(nums, target) + 1;
+    }
+
+    // 查找上边界
+    int upper_bound(vector<int>& nums, int target) {
+      int l = 0, r = nums.size() - 1, mid = 0;
+
+      // 查找target的上边界
+      while (l < r) {
+        mid = l + (r - l) / 2 + 1;
+
+        if (nums[mid] <= target)
+          l = mid;
+        else
+          r = mid - 1;
+      }
+
+      return nums[l] == target ? l : -1;
+    }
+
+    // 查找下边界
+    int lower_bound(vector<int>& nums, int target) {
+      int l = 0, r = nums.size() - 1, mid = 0;
+
+      // 查找target的下边界
+      while (l < r) {
+        mid = l + (r - l) / 2;
+
+        if (nums[mid] >= target)
+          r = mid;
+        else
+          l = mid + 1;
+      }
+
+      return nums[l] == target ? l : 0;
+    }
+};
+
 int main() {
-  vector<int> inputs = {5,7,7,8,8,10};
-  int target = 8;
+  vector<int> inputs = {5,7,7,8,8,8,8,8,8,10};
+  int target = 7;
   Solution ss;
   cout << ss.search(inputs, target);
   return 0;
