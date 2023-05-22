@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <unordered_set>
 using namespace std;
 
 // 二分查找，值从0开始，到nums.size()截至
@@ -24,13 +25,15 @@ class Solution {
 
 // 使用一个辅助set进行遍历
 class Solution {
-public:
+  public:
     int missingNumber(vector<int>& nums) {
+        // 遍历所有元素并插入visited
         for (auto num : nums)
         {
             visited.insert(num);
         }
 
+        // 0 - n 遍历计数
         for (int i = 0; i <= visited.size() ; i++)
         {
             if (!visited.count(i))
