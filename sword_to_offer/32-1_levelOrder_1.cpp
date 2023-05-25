@@ -11,18 +11,26 @@ struct TreeNode {
   TreeNode *right;
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+
+/**
+ * @brief 
+ * 使用一个队列辅助
+ */
 class Solution {
  public:
   vector<int> levelOrder(TreeNode* root) {
-    vector<int> res;
     if (root == nullptr)
       return res;
-    queue<TreeNode*> que;
+
     que.push(root);
     while (!que.empty()){
+      // 获取队头元素
       res.push_back(que.front()->val);
-      TreeNode* tmp = que.front();
+      
+      // 获取队头元素并出队
+      tmp = que.front();
       que.pop();
+
       if (tmp->left)
         que.push(tmp->left);
       if (tmp->right)
@@ -30,4 +38,8 @@ class Solution {
     }
     return res;
   }
+  private:
+    vector<int> res;
+    queue<TreeNode*> que;  // 辅助队列
+    TreeNode* tmp = nullptr;
 };
