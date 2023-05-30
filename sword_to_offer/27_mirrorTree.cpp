@@ -11,7 +11,10 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-//采用递归方法
+/**
+ * @brief 
+ * 从根节点开始递归的对树进行遍历，并从叶子节点先开始反转得到镜像
+ */
 class Solution {
  public:
   TreeNode* mirrorTree(TreeNode* root) {
@@ -23,14 +26,22 @@ class Solution {
     if (root->left == nullptr && root->right == nullptr)
       return root;
 
+    // 当前递归栈帧中使用的临时变量
     TreeNode* tmp = root->left;
     root->left = mirrorTree(root->right);
     root->right = mirrorTree(tmp);
+
     return root;
-  }
+  } 
 };
 
 
+
+/**
+ * @brief 
+ * 使用一个辅助栈，从上到下依次将每一层的节点添加到栈中
+ * 从上到下依次进行反转
+ */
 class Solution {
  public:
   TreeNode* mirrorTree(TreeNode* root) {
@@ -52,6 +63,8 @@ class Solution {
     return root;
   }
 };
+
+
 int main() {
   return 0;
 }
