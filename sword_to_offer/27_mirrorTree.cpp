@@ -48,14 +48,20 @@ class Solution {
     stack<TreeNode*> stacktmp;
     if (!root)
       return nullptr;
+
+    // 根节点入栈
     stacktmp.push(root);
     while (!stacktmp.empty()) {
+      // 获取栈顶元素
       TreeNode* node = stacktmp.top();
       stacktmp.pop();
+
       if (node->left)
         stacktmp.push(node->left);
       if (node->right)
         stacktmp.push(node->right);
+      
+      // 交换出栈元素的左右子树
       TreeNode* tmp = node->left;
       node->left = node->right;
       node->right = tmp;

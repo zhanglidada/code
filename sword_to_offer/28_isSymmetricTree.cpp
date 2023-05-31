@@ -23,3 +23,28 @@ class Solution {
     return recur(left->left, right->right) && recur(left->right, right->left);
   }
 };
+
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root)
+    {
+        if (root == nullptr)
+            return true;
+
+        return ismirror(root->left, root->right);
+    }
+
+    bool ismirror(TreeNode* left, TreeNode* right)
+    {
+        if (left == nullptr && right == nullptr)
+            return true;
+
+        if (left == nullptr || right == nullptr)
+            return false;
+
+        if (left->val != right->val)
+            return false;
+        
+        return ismirror(left->left, right->right) && ismirror(left->right, right->left);
+    }
+};
