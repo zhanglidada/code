@@ -21,12 +21,13 @@ struct TreeNode {
  * 
  */
 
-/***************************************************************
- * 使用先序遍历的方式，序列化二叉树
+
+/***************************************************************************
+ * 1.使用先序遍历的方式，序列化二叉树
  * 
  * 1）空值使用none保存
  * 2）使用 ',' 隔开
-***************************************************************/
+***************************************************************************/
 class Codec {
   public:
     // 序列化二叉树
@@ -133,5 +134,82 @@ class Codec {
       if (j < vec.size())  vec[i]->right = vec[j++];
     }
     return vec[0];
+  }
+};
+
+/****************************************************************
+ * 2.使用括号表示编码 + 递归下降
+ * 
+ * 1）当前树为空，表示为X
+ * 
+ * 2）当前树不为空，表示为 （left sub tree）num（right sub tree）
+ * *left sub tree 为左子树序列化后的结果
+ * *right sub tree 为右子树序列化后的结果
+ * *num 为当前节点的值
+ * 
+ * 3）采用后续遍历方式序列化二叉树
+ * 
+ * 4）T -> (T) num (T) | X
+ * 
+ * 用 T 代表一棵树序列化之后的结果，| 表示 T 的构成为 (T) num (T) 或者 X，| 左边是对 T 的递归定义，右边规定了递归终止的边界条件。
+ * 在 T 的定义中，序列中的第一个字符要么是 X，要么是 (，所以这个定义是不含左递归的
+ * 开始解析一个字符串时，如果开头是 X，就知道这一定是解析一个「空树」的结构，如果开头是 (，就知道需要解析 (T) num (T) 的结构，
+ * 因此这里两种开头和两种解析方法一一对应，可以确定这是一个无二义性的文法，只需要通过开头的第一个字母是 X 还是 ( 来判断使用哪一种解析方法
+ * 
+ * 这个文法是一个LL(1)文法
+******************************************************************/
+class Codec {
+  public:
+  string serialize(TreeNode* root) {
+      if (!root) {
+          return "X";
+      }
+      auto left = "(" + serialize(root->left) + ")";
+      auto right = "(" + serialize(root->right) + ")";
+      return left + to_string(root->val) + right;
+  }
+
+  // 解析字符串代表的值，string to int
+  inline int parseInt(const string &data, int &ptr) {
+    int x = 0;
+    int sgn = 1;  // 符号位
+    if (!isdigit(data[ptr])) {
+        sgn = -1;
+        ++ptr;
+    }
+    while (isdigit(data[ptr])) {
+        x = x * 10 + data[ptr++] - '0';
+    }
+    return x * sgn;
+  }
+
+  inline TreeNode* parseSubtree(const string &data, int &ptr) {
+    ++ptr; // 跳过左括号
+    auto subtree = parse(data, ptr);
+    ++ptr; // 跳过右括号
+    return subtree;
+  }
+
+  TreeNode* parse(const string &data, int &ptr) {
+    // 当前节点为空，返回
+    if (data[ptr] == 'X') {
+        ++ptr;
+        return nullptr;
+    }
+
+    auto cur = new TreeNode(0);
+    // 解析左子树
+    cur->left = parseSubtree(data, ptr);
+    // 设置当前节点的值
+    cur->val = parseInt(data, ptr);
+    // 解析右子树
+    cur->right = parseSubtree(data, ptr);
+    return cur;
+  }
+
+  TreeNode* deserialize(string data) {
+      int ptr = 0;
+      // 返回反序列化后的树
+      return parse(data, ptr);
   }
 };
