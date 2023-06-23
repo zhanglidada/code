@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <stack>
+
 using namespace std;
 
 // Definition for a binary tree node.
@@ -54,6 +56,52 @@ class Solution {
   }
  private:
   unordered_map<int, int> pos;
+};
+
+
+/************************************************************************
+ * 1.采用迭代的方法
+ * 
+ * 对于前序遍历中的任意两个连续节点u,v，他们有两种可能的关系：
+ * 1）v是u的左孩子
+ * 
+ * 2）u没有左孩子，那么v是u的某个祖先节点(或者u本身)的右孩子：
+ *   ·如果u没有左孩子，那么下一个节点就是u的右孩子
+ *   ·如果u没有右孩子，那么向上回溯，直到遇到第一个有右孩子（且u不在其右孩子的子树中）的节点Ua,v为Ua的右孩子
+ * 
+ * 设计思路：
+ * 1）使用栈维护「当前节点的所有还没有考虑过右儿子的祖先节点」，栈顶就是当前节点。
+ * 2) 使用一个指针 index 指向中序遍历的某个位置，初始值为0。index 对应的节点是「当前节点不断往左走达到的最终节点」
+ ************************************************************************/
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        if (!preorder.size()) {
+            return nullptr;
+        }
+        TreeNode* root = new TreeNode(preorder[0]);
+        stack<TreeNode*> stk;
+        stk.push(root);
+        int inorderIndex = 0;
+        for (int i = 1; i < preorder.size(); ++i) {
+            int preorderVal = preorder[i];
+            TreeNode* node = stk.top();
+            if (node->val != inorder[inorderIndex]) {
+                node->left = new TreeNode(preorderVal);
+                stk.push(node->left);
+            }
+            else {
+                while (!stk.empty() && stk.top()->val == inorder[inorderIndex]) {
+                    node = stk.top();
+                    stk.pop();
+                    ++inorderIndex;
+                }
+                node->right = new TreeNode(preorderVal);
+                stk.push(node->right);
+            }
+        }
+        return root;
+    }
 };
 
 
