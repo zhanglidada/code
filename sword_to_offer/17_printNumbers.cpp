@@ -2,49 +2,66 @@
 #include <vector>
 using namespace std;
 
-/*
+/**
+ * @brief 
+ * 输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。
+ *  比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。
+ */
 class Solution {
  public:
 	vector<int> printNumbers(int n) {
     if (n <= 0)
       return res;
-    // 创建一个能容纳最大值的string数组
+
+    // 创建N位string数组
     string number(n, '0');
-    // 一直循环并saveNumber，直到边界情况退出
+
+    // 一直循环，获取全排列串并添加number，直到越界
     while (!increment(number)) {
       saveNumber(number);
     }
     return res;
 	}
-  // 全排列并修改number,在最大数字之后返回越界
+
+  // 全排列字符串直到越界
   bool increment(string& number) {
     bool isOverflow = false;
     int nTakeOver = 0;  // 存储进位
+
+    // 获取number的位数，即最大为几位数
     int nLength = number.size();
+
     for (int i = nLength - 1; i >= 0; i--) {
+
+      // 设置第i位的值为原始值 + 进位值
       int nSum = number[i] - '0' + nTakeOver;
-      // 如果是第一位，需要加一，表示一个全排列
+
+      // 第一次进入当前函数进行排列，需要加一，表示开始一个新的全排列
       if (i == nLength - 1)
         nSum ++;
 
-      // 有进位
+      // 后续循环仅处理进位的情况
       if (nSum >= 10) {
         // 到边界情况
         if (i == 0)
           isOverflow = true;  // 越界
         else {
           nTakeOver = 1; // 有进位
+          // 修改当前位的值
           number[i] = nSum - 10 + '0';
         }
-      } else {
+      }
+      else {
         // 没有进位，直接低位+1，高位不变
         number[i] = nSum + '0';
         break;
       }
     }
+
     return isOverflow;
   }
-  // 将increment排列修改后的number存储到res中
+
+  // string转number
   void saveNumber(string number) {
     bool isBegin = false;
     int sum = 0;
@@ -58,11 +75,13 @@ class Solution {
     }
     res.push_back(sum);
   }
- private:
-  vector<int> res;
-};  */
 
-/*
+ private:
+  // 返回结果数组
+  vector<int> res;
+};
+
+
 class Solution {
  public:
   // 最简单的判断边界问题
@@ -101,7 +120,7 @@ class Solution {
   string path;
   int start = 0;  // 确定左边界，左闭合区间
   int nine = 0;  // 判断是否需要进位，若当前位全是9的时候需要进位
-};*/
+};
 
 class Solution {
  public:
