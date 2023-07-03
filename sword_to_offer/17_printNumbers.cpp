@@ -7,6 +7,12 @@ using namespace std;
  * 输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。
  *  比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。
  */
+
+
+/*********************************************************
+ * 1.全排列
+ * 
+*********************************************************/
 class Solution {
  public:
 	vector<int> printNumbers(int n) {
@@ -40,7 +46,7 @@ class Solution {
       if (i == nLength - 1)
         nSum ++;
 
-      // 后续循环仅处理进位的情况
+      // 循环仅处理进位的情况
       if (nSum >= 10) {
         // 到边界情况
         if (i == 0)
@@ -52,7 +58,7 @@ class Solution {
         }
       }
       else {
-        // 没有进位，直接低位+1，高位不变
+        // 没有进位，直接设置低位并跳出循环
         number[i] = nSum + '0';
         break;
       }
@@ -67,7 +73,7 @@ class Solution {
     int sum = 0;
     for (int i = 0; i < number.size(); i++) {
       int value = number[i] - '0';
-      // 只要第一个非0值出现，就开始
+      // 从前往后第一个非0的字符出现，开始计算
       if (value)
         isBegin = true;
       if (isBegin)
