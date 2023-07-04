@@ -87,45 +87,38 @@ class Solution {
   vector<int> res;
 };
 
-
+/*********************************************************
+ * 2.dfs
+ * 
+*********************************************************/
 class Solution {
- public:
-  // 最简单的判断边界问题
+public:
   vector<int> printNumbers(int n) {
-    deep = n;
-    path = string(n, 0);
-    start = n - 1;
-    dfs(0);
-    vector<int> ans;
-    for (auto str : res) {
-      ans.push_back(atoi(str.c_str()));  // string转换成int
-    }
-    return ans;
+    // 依次获取 1位数 到 n位数
+    for(int digit = 1; digit <= n; digit++)
+      // 第一位数字不能为0，所以为1~9
+      for(int j = 1; j <= 9; j++)
+        dfs(1, digit, to_string(j)); //dfs从1开始，因为第0位已经确定了
+  
+  return res;
   }
-  void dfs(int n) {
-    // 递归到最后需要返回
-    if (n == deep) {
-      string str = path.substr(start);
-      if (str != "0")
-        res.push_back(str);
-      // 每次递归到最后一位的时候判断当前有效字符串中含有几个9，是否需要进位
-      if (deep - start == nine)  start --;
+
+  // 从第k位开始遍历,当前遍历的是n位数
+  void dfs(int k, int n, string s)
+  {
+    // dfs到n位数末尾
+    if(k == n)
+    {
+      res.emplace_back(stoi(s));
       return;
     }
-    for (auto c : loop) {
-      if (c == '9')  nine ++;
-      path[n] = c;
-      dfs(n + 1);
-    }
-    nine --;
+
+    // 之后的每一位都可以从0 ~ 10
+    for(int i = 0; i < 10; i++)
+      dfs(k + 1, n, s + to_string(i));
   }
- private:
-  char loop[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-  int deep = 0;
-  vector<string> res = {};
-  string path;
-  int start = 0;  // 确定左边界，左闭合区间
-  int nine = 0;  // 判断是否需要进位，若当前位全是9的时候需要进位
+private:
+  vector<int> res;
 };
 
 class Solution {
