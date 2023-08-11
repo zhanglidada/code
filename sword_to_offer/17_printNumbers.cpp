@@ -98,9 +98,10 @@ public:
     for(int digit = 1; digit <= n; digit++)
       // 第一位数字不能为0，所以为1~9
       for(int j = 1; j <= 9; j++)
-        dfs(1, digit, to_string(j)); //dfs从1开始，因为第0位已经确定了
+        //dfs从1开始，因为第0位已经确定了,
+        dfs(1, digit, to_string(j));
   
-  return res;
+    return res;
   }
 
   // 从第k位开始遍历,当前遍历的是n位数
