@@ -42,6 +42,7 @@
     "stdexcept": "cpp",
     "typeinfo": "cpp",
     "list": "cpp",
-    "xutility": "cpp"
+    "xutility": "cpp",
+    "hashtable.h": "c"
   }
 }

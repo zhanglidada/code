@@ -1,0 +1,27 @@
+{
+    "configurations": [
+        {
+            "name": "x64",
+            "includePath": [
+                "${workspaceFolder}/../src/*"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64"
+        },
+        {
+            "name": "ububtu",
+            "includePath": [
+                "${workspaceFolder}/../src/*"  // ${workspaceFolder}表示当前打开的文件所在文件夹的路径
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
