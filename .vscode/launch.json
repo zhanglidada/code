@@ -29,8 +29,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/zhangli/workspace/code/leetcode/LRU",
-      "program": "/home/zhangli/workspace/code/leetcode/LRU/build/Debug/outDebug",
+      "cwd": "/home/zhangli/workspace/code/linux_net_coding/5_th",
+      "program": "/home/zhangli/workspace/code/linux_net_coding/5_th/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
