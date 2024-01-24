@@ -43,7 +43,9 @@
     "typeinfo": "cpp",
     "list": "cpp",
     "xutility": "cpp",
-    "hashtable.h": "c"
+    "hashtable.h": "c",
+    "common.h": "c",
+    "wait.h": "c"
   },
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "gcc",

@@ -29,8 +29,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/zhangli/workspace/code/linux_net_coding/5_th",
-      "program": "/home/zhangli/workspace/code/linux_net_coding/5_th/build/Debug/outDebug",
+      "cwd": "/home/zhangli/workspace/code/operating_sys/5th",
+      "program": "/home/zhangli/workspace/code/operating_sys/5th/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
