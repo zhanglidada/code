@@ -16,7 +16,9 @@ void byteorder() {
   else
     printf("unknown");
 }
-int main() {
+int main() {  // 程序入口
+  
   byteorder();
+  
   return 0;
 }
