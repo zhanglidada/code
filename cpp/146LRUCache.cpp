@@ -4,6 +4,8 @@
 #include <vector>
 #include <stack>
 
+using namespace std;
+
 typedef struct node node_t;
 struct node {
   int     key;
@@ -17,8 +19,11 @@ struct node {
 // 用双向链表保存LRU链
 class LRUCache {
   public:
+    // 初始化，设置LRU链表容量以及哨兵节点
     LRUCache(int capacity) {
       size = capacity;
+
+      // 初始化两个哨兵节点
       l = new node_t(-1, -1);
       r = new node_t(-1, -1);
 
@@ -53,7 +58,7 @@ class LRUCache {
         if (map.find(key) != map.end()) {
           node_t* node = map[key];
 
-                    // 从当前位置移除
+          // 从当前位置移除
           node->prev->next = node->next;
           node->next->prev = node->prev;
           
