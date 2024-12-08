@@ -31,6 +31,16 @@ class LRUCache {
       r->prev = l;
     }
     
+    ~LRUCache() {
+      node_t* cur = l;
+      while (cur != nullptr) {
+        // 先指向next节点，再将当前节点删除
+        node_t* next = cur->next;
+        delete cur;
+        cur = next;
+      }
+    }
+
     int get(int key) {
         // 访问节点并将其移动到链表头
         if (map.find(key) != map.end()) {

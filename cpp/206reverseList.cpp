@@ -40,17 +40,18 @@ class Solution {
 class Solution {
   public:
     ListNode* reverseList(ListNode* head) {
-        if (head == nullptr || head->next == nullptr)
-          return head;
+      if (head == nullptr || head->next == nullptr)
+        return head;
 
-        ListNode* newhead = reverseList(head->next);
+      // newhead 指向反转后的链表头节点（从head->next开始）
+      ListNode* newhead = reverseList(head->next);
 
-        // 将链表的节点顺序反转
-        head->next->next = head;
-        head->next = nullptr;
+      // 1 -> 2 <- 3 <- 4 <- 5 , 此时head为1，head->next为2
+      head->next->next = head;
+      head->next = nullptr;
 
-        // 始终返回反转后的链表头节点（也就是递归最后返回的原链表中的尾节点）
-        return newhead;
+      // 始终返回反转后的链表头节点（也就是递归最后返回的原链表中的尾节点）
+      return newhead;
     }
 };
 
